@@ -15,5 +15,8 @@
   "devDependencies": {
     "vitepress": "^1.6.4",
     "vue": "^3.5.26"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.88"
   }
 }
