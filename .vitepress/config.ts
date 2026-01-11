@@ -5,7 +5,6 @@ export default defineConfig({
   description: "A robust Lavalink client for Node.js",
   base: '/',
   themeConfig: {
-    logo: '/logo.png',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/getting-started' },
