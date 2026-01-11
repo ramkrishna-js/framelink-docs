@@ -27,6 +27,13 @@ export default defineConfig({
           { text: 'Lavalink Manager', link: '/guide/manager' },
           { text: 'Advanced Search', link: '/guide/advanced-search' },
           { text: 'Players', link: '/guide/players' },
+          { text: 'Audio Filters', link: '/guide/filters' }
+        ]
+      },
+      {
+        text: 'Utility',
+        collapsed: false,
+        items: [
           { text: 'Queue System', link: '/guide/queue' }
         ]
       },
