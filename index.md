@@ -3,23 +3,30 @@ layout: home
 
 hero:
   name: Framelink
-  text: A robust Lavalink client for Node.js
-  tagline: Lightweight, fast, and highly customizable.
+  text: Modern Lavalink Client
+  tagline: A lightweight, robust, and plugin-ready Lavalink client for Node.js.
+  image:
+    src: /logo.png
+    alt: Framelink
   actions:
     - theme: brand
-      text: Getting Started
+      text: Get Started
       link: /guide/getting-started
     - theme: alt
       text: View on GitHub
       link: https://github.com/ramkrishna-js/framelink
 
 features:
-  - title: Simple & Intuitive
-    details: Designed for ease of use without sacrificing power.
-  - title: Lavalink v4 Support
-    details: Full support for the latest Lavalink features and REST API.
-  - title: Plugin System
-    details: Easily extend functionality with custom plugins.
-  - title: Built-in Queue
-    details: Efficient and robust queue management out of the box.
+  - title: Universal Support
+    details: Seamless integration with Lavalink v3 and v4, ensuring compatibility with the latest features.
+    icon: 🚀
+  - title: Visual Excellence
+    details: Native-like integration with Framecard for beautiful, dynamic music cards in Discord.
+    icon: 🎨
+  - title: Smart Queue
+    details: Advanced queue management with built-in shuffle, move, and aggressive autoplay.
+    icon: 🎵
+  - title: High Performance
+    details: Optimized for low memory usage and high-speed search and playback operations.
+    icon: ⚡
 ---
