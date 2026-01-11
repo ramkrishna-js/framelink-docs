@@ -29,9 +29,33 @@ manager.on('trackStart', async (player, track) => {
         .setStartTime('0:00')
         .setEndTime(formatTime(track.info.length));
 
-    const buffer = await card.build();
-    const attachment = new AttachmentBuilder(buffer, { name: 'card.png' });
+## Customization Options
 
-    channel.send({ files: [attachment] });
-});
+You can customize almost every aspect of the card:
+
+| Method | Description |
+| --- | --- |
+| `setTitle(string)` | Sets the track title. |
+| `setAuthor(string)` | Sets the author name. |
+| `setThumbnail(string)` | Sets the thumbnail URL (supports local paths too). |
+| `setColor(string)` | Sets the theme color (Hex). |
+| `setProgress(number)` | Sets progress bar percentage (0-100). |
+| `setStartTime(string)` | Sets the current time string. |
+| `setEndTime(string)` | Sets the total duration string. |
+| `setBrightness(number)` | Adjusts background brightness (0-100). |
+
+## Full Example
+
+```typescript
+const card = new ClassicCard()
+    .setTitle('Track Title')
+    .setAuthor('Artist')
+    .setThumbnail('https://example.com/thumb.jpg')
+    .setColor('#ff0000')
+    .setProgress(50)
+    .setStartTime('1:30')
+    .setEndTime('3:00')
+    .setBrightness(40);
+
+const buffer = await card.build();
 ```

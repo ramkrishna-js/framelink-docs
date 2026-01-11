@@ -24,6 +24,7 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: 'Lavalink Manager', link: '/guide/manager' },
+          { text: 'Advanced Search', link: '/guide/advanced-search' },
           { text: 'Players', link: '/guide/players' },
           { text: 'Queue System', link: '/guide/queue' }
         ]

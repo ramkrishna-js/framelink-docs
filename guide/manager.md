@@ -1,46 +1,62 @@
 # Lavalink Manager
 
-The `LavalinkManager` is the heart of your music bot. It handles node connections, player creation, and event dispatching.
+The `LavalinkManager` is the primary entry point for the library. It manages node connections, player lifecycles, and search operations.
 
-## Initialization
+## Configuration Options
 
-```typescript
-import { LavalinkManager } from '@ramkrishna-js/framelink';
-import { Client } from 'discord.js';
+When creating a `LavalinkManager` instance, you can provide the following options:
 
-const client = new Client({ /* ... */ });
+| Option | Type | Description |
+| --- | --- | --- |
+| `nodes` | `NodeOptions[]` | Array of Lavalink nodes to connect to. |
+| `send` | `Function` | A function to send voice payloads to Discord. |
+| `autoResume` | `boolean` | Whether to automatically resume sessions on reconnect. |
+| `plugins` | `Plugin[]` | Array of plugins to load. |
 
-const manager = new LavalinkManager({
-    nodes: [
-        {
-            host: 'localhost',
-            port: 2333,
-            password: 'youshallnotpass',
-            secure: false,
-            version: 'v4'
-        }
-    ],
-    send: (guildId, payload) => {
-        const guild = client.guilds.cache.get(guildId);
-        if (guild) guild.shard.send(payload);
-    }
-});
+### Node Options
 
-// Initialize after bot is ready
-client.on('ready', () => {
-    manager.init(client.user.id);
-});
+| Option | Type | Description |
+| --- | --- | --- |
+| `host` | `string` | The Lavalink server hostname. |
+| `port` | `number` | The Lavalink server port. |
+| `password` | `string` | The Lavalink server password. |
+| `secure` | `boolean` | Use secure (WSS/HTTPS) connection. |
+| `version` | `'v3' \| 'v4'` | The Lavalink version. |
 
-// Handle voice updates
-client.on('raw', (d) => manager.handleVoiceUpdate(d));
-```
+## Methods
+
+### `init(userId: string)`
+Initializes the manager and connects to all configured nodes.
+
+### `createPlayer(options: PlayerOptions)`
+Creates a new player for a guild.
+- `guildId`: Discord guild ID.
+- `voiceChannelId`: The channel to join.
+- `textChannelId`: The channel for notifications.
+- `autoplay`: Enable automatic recommendations.
+
+### `search(query: string, source?: string)`
+Searches for tracks using the best available node.
+- `source` defaults to `yt` (YouTube). Other values: `ytm`, `sc`, `sp`, `am`, `dz`.
 
 ## Events
 
-The manager emits various events:
+The manager is an `EventEmitter`:
 
-- `nodeConnect`: When a node connects.
-- `nodeError`: When a node encounters an error.
-- `trackStart`: When a track begins playing.
-- `queueEnd`: When the queue is empty.
-- `playerDestroy`: When a player is destroyed.
+```typescript
+manager.on('trackStart', (player, track) => {
+    console.log(`Now playing: ${track.info.title}`);
+});
+
+manager.on('nodeConnect', (node) => {
+    console.log(`Node ${node.options.host} is online.`);
+});
+
+manager.on('nodeError', (node, error) => {
+    console.error(`Node ${node.options.host} failed: ${error.message}`);
+});
+
+manager.on('playerDestroy', (player) => {
+    console.log(`Player destroyed for guild ${player.guildId}`);
+});
+```

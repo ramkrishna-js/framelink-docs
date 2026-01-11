@@ -1,35 +1,56 @@
 # Players
 
-Players handle the playback for a specific guild.
+Players represent a connection to a voice channel in a guild.
 
-## Creating a Player
+## Advanced Controls
 
+### Volume Management
+Framelink supports volume levels from 0 to 1000.
 ```typescript
-const player = manager.createPlayer({
-    guildId: 'GUILD_ID',
-    voiceChannelId: 'VOICE_CHANNEL_ID',
-    textChannelId: 'TEXT_CHANNEL_ID',
-    selfDeaf: true
+player.setVolume(100); // Set to 100%
+```
+
+### Seeking
+Seek to any position (in milliseconds):
+```typescript
+await player.seek(60000); // Go to 1 minute
+```
+
+### Repeat Modes
+You can toggle between different repeat modes:
+```typescript
+player.setRepeatMode('off');   // No loop
+player.setRepeatMode('track'); // Loop current song
+player.setRepeatMode('queue'); // Loop entire queue
+```
+
+## Audio Filters
+
+Framelink includes high-level methods for popular filters:
+
+### Bassboost
+```typescript
+player.setBassboost(true);
+```
+
+### Nightcore
+```typescript
+player.setNightcore(true);
+```
+
+### Custom Filters
+You can apply any raw Lavalink filters:
+```typescript
+await player.setFilters({
+    timescale: { speed: 1.2 },
+    vibrato: { frequency: 2, depth: 0.5 }
 });
-
-player.connect();
 ```
 
-## Playback Control
+## State Properties
 
-```typescript
-// Play a track
-await player.play(track);
-
-// Skip
-player.skip();
-
-// Stop
-player.stop();
-
-// Seek
-await player.seek(30000); // 30 seconds
-
-// Volume
-await player.setVolume(50);
-```
+You can check the current state of a player anytime:
+- `player.isPlaying`: Boolean indicating if a track is active.
+- `player.paused`: Boolean indicating if playback is paused.
+- `player.position`: Current playback position in ms.
+- `player.volume`: Current volume level.
