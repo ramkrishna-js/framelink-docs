@@ -29,4 +29,5 @@ features:
   - title: High Performance
     details: Optimized for low memory usage and high-speed search and playback operations.
     icon: ⚡
+# Updated docs
 ---
