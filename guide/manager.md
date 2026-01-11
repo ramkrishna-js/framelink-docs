@@ -35,9 +35,11 @@ Creates a new player for a guild.
 - `textChannelId`: The channel for notifications.
 - `autoplay`: Enable automatic recommendations.
 
-### `search(query: string, source?: string)`
-Searches for tracks using the best available node.
-- `source` defaults to `yt` (YouTube). Other values: `ytm`, `sc`, `sp`, `am`, `dz`.
+### `use(plugin: Plugin)`
+Injects a plugin into the manager. Can be called at any time.
+
+### `destroy()`
+Gracefully shuts down all node connections and destroys all active players.
 
 ## Events
 

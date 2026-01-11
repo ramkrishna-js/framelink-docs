@@ -39,8 +39,9 @@ export default defineConfig({
       },
       {
         text: 'Advanced',
-        collapsed: true,
+        collapsed: false,
         items: [
+          { text: 'Session Resuming', link: '/guide/resuming' },
           { text: 'Plugin System', link: '/guide/plugins' },
           { text: 'Voice Updates', link: '/guide/voice-updates' }
         ]
